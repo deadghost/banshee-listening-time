@@ -36,7 +36,6 @@ main() {
                 elapsed_seconds=$((current_unix_time - unix_time))
                 seconds=$((seconds + elapsed_seconds))
                 insert_replace_time $elapsed_seconds
-                #echo "Total listening time: $seconds seconds"
                 convert_seconds $seconds
                 unix_time=$current_unix_time
             fi
