@@ -29,17 +29,17 @@ main() {
     unix_time=`date +%s`
 
     while sleep 10; do
+        current_unix_time=`date +%s`
         if ( pgrep banshee > /dev/null ); then
             if [ "$(banshee --query-current-state | cut -d ' ' -f2)" \
                 = "playing" ]; then
-                current_unix_time=`date +%s`
                 elapsed_seconds=$((current_unix_time - unix_time))
                 seconds=$((seconds + elapsed_seconds))
                 insert_replace_time $elapsed_seconds
                 convert_seconds $seconds
-                unix_time=$current_unix_time
             fi
         fi
+        unix_time=$current_unix_time
     done
 }
 
